@@ -1,9 +1,9 @@
 {
-  "name": "MMM-CountDown",
+  "name": "MMM-NextEvent",
   "version": "1.0.0",
-  "description": "Count down to a specific event",
-  "main": "MMM-CountDown.js",
-  "author": "Boaz Arad",
+  "description": "Count down to the next calendar event of the day",
+  "main": "MMM-NextEvent.js",
+  "author": "Ward Vandewege",
   "license": "MIT",
   "devDependencies": {
     "grunt": "latest",

@@ -1,11 +1,24 @@
-# MMM-CountDown
-![Screenshot](https://github.com/boazarad/MMM-CountDown/raw/master/screenshots/screenshot.png)
+# MMM-NextEvent
 
-This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror/) which can count down the days to a date/event.
+## Screenshot
+![Screenshot](https://github.com/cure/MMM-NextEvent/raw/main/screenshots/screenshot1.png)
+![Screenshot](https://github.com/cure/MMM-NextEvent/raw/main/screenshots/screenshot2.png)
+![Screenshot](https://github.com/cure/MMM-NextEvent/raw/main/screenshots/screenshot3.png)
+![Screenshot](https://github.com/cure/MMM-NextEvent/raw/main/screenshots/screenshot4.png)
 
-I've never written anything with Node.js before, so hopefully this isn't a total mess, if it is - feel free to lend a hand :)
+## Description
 
-## Using the module
+This is a module for [MagicMirror²](https://github.com/MichMich/MagicMirror/) which counts down to the next calendar event today. It is a slightly modified version of Boaz Arad's [MMM-CountDown](https://github.com/boazarad/MMM-CountDown), who did the hard work, thank you!
+
+This module requests an event list from [MMM-CalExt2](https://github.com/MMM-CalendarExt2/MMM-CalendarExt2) for the current date, and displays a countdown in hours and minutes to the next event. If there is no event later today, it displays a happy 'Not today!' message.
+
+## Installation
+
+```
+cd ~/MagicMirror/modules
+git clone --depth=1 https://github.com/cure/MMM-NextEvent
+```
+## Configuration
 
 To use this module, add the following configuration block to the modules array in the `config/config.js` file:
 
@@ -13,7 +26,7 @@ To use this module, add the following configuration block to the modules array i
 var config = {
     modules: [
         {
-            module: 'MMM-CountDown',
+            module: 'MMM-NextEvent',
             config: {
                 // See configuration options
             }
@@ -22,13 +35,12 @@ var config = {
 }
 ```
 
-## Configuration options
+### Configuration options
 
 | Option           | Description                                                                                                           |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `position`       | *Required* Where do you want to place the counter (use standard magicmirror positions)                                |
-| `event`          | *Required* Name of event to count down to (displayed above counter)                                                   |
-| `date`           | *Required* Date to count down to (YYYY-MM-DD HH:MM:SS)                                                                |
+| `event`          | Name of the title displayed above counter when there is no next event. Default is 'Next event'                        |
 | `showHours`      | Decide whether or not to display the hours. Default is true                                                           |
 | `showMinutes`    | Decide whether or not to display the minutes. Default is true                                                         |
 | `showSeconds`    | Decide whether or not to display the seconds. Default is true                                                         |
@@ -37,5 +49,3 @@ var config = {
 | `hoursLabel`     | Choose how you wish to display your Hours label. Default is h                                                         |
 | `minutesLabel`   | Choose how you wish to display your Minutes label. Default is m                                                       |
 | `secondsLabel`   | Choose how you wish to display your Seconds label. Default is m                                                       |
-
-If either of the above are missing, the module will count down to the New Millenium (3000-01-01)
