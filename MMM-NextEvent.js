@@ -27,7 +27,7 @@ Module.register("MMM-NextEvent",{
 		//console.log(events)
 		var now = moment().format("X")
 		events.sort((a, b) => a.startDate.localeCompare(b.startDate))
-		if ((now >= events[0].startDate) && (now <= events[0].endDate)) {
+		if ((typeof events[0] !== 'undefined') && (now >= events[0].startDate) && (now <= events[0].endDate)) {
 			this.config.event = events[0].title;
 			this.config.date = "1000-10-10";
 		} else if (typeof events[0] !== 'undefined') {
