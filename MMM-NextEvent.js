@@ -25,13 +25,17 @@ Module.register("MMM-NextEvent",{
 
 	updateDate: function(events) {
 		//console.log(events)
+		var now = moment().format("X")
 		events.sort((a, b) => a.startDate.localeCompare(b.startDate))
-		if (typeof events[0] !== 'undefined') {
+		if ((now >= events[0].startDate) && (now <= events[0].endDate)) {
+			this.config.event = events[0].title;
+			this.config.date = "1000-10-10";
+		} else if (typeof events[0] !== 'undefined') {
 			this.config.event = events[0].title;
 			this.config.date = events[0].startDateJ;
 		} else {
-			this.config.event = "Next event"
-			this.config.date = "0000-00-00"
+			this.config.event = "Next event";
+			this.config.date = "0000-00-00";
 		}
 		this.updateDom(); // no speed defined, so it updates instantly.
 	},
@@ -40,8 +44,10 @@ Module.register("MMM-NextEvent",{
 		var now = moment().format("X")
 		var endOfDay = moment().endOf('day').format("X")
 		var filterFn = (event) => {
-			// Do not consider all-day events. Only consider events that start in the future in the next few days.
-			if ((event.isFullday !== true) && (event.startDate > now) && (event.startDate < endOfDay)) return true
+			// Do not consider all-day events. Only consider events that start in the future or are currently on.
+			if ((event.isFullday !== true) &&
+			    ((event.startDate > now) && (event.startDate < endOfDay) ||
+			     (event.startDate <= now) && (event.endDate >= now))) return true
 		}
 		var callbackFn = (events) => {
 			this.updateDate(events)
@@ -93,6 +99,9 @@ Module.register("MMM-NextEvent",{
 		if (this.config.date === "0000-00-00") {
 			timeWrapper.innerHTML = "Not today!";
 			timeWrapper.className = "time xlarge light green";
+		} else if (this.config.date === "1000-10-10") {
+			timeWrapper.innerHTML = "In progress";
+			timeWrapper.className = "time bright xlarge light";
 		} else if (this.config.date !== "3000-01-01") {
 			timeWrapper.innerHTML = days + hrs + mins + secs;
 		}
