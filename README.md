@@ -5,6 +5,7 @@
 ![Screenshot](https://github.com/cure/MMM-NextEvent/raw/main/screenshots/screenshot2.png)
 ![Screenshot](https://github.com/cure/MMM-NextEvent/raw/main/screenshots/screenshot3.png)
 ![Screenshot](https://github.com/cure/MMM-NextEvent/raw/main/screenshots/screenshot4.png)
+![Screenshot](https://github.com/cure/MMM-NextEvent/raw/main/screenshots/screenshot5.png)
 
 ## Description
 

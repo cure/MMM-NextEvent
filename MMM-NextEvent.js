@@ -29,7 +29,13 @@ Module.register("MMM-NextEvent",{
 		events.sort((a, b) => a.startDate.localeCompare(b.startDate))
 		if ((typeof events[0] !== 'undefined') && (now >= events[0].startDate) && (now <= events[0].endDate)) {
 			this.config.event = events[0].title;
-			this.config.date = "1000-10-10";
+			if ((now >= events[0].startDate) && (now <= events[0].endDate-10*60)) {
+				this.config.date = "1000-10-10";
+			} else if ((now >= events[0].startDate) && (now <= events[0].endDate-5*60)) {
+				this.config.date = "1000-10-11";
+			} else if ((now >= events[0].startDate) && (now <= events[0].endDate)) {
+				this.config.date = "1000-10-12";
+			}
 		} else if (typeof events[0] !== 'undefined') {
 			this.config.event = events[0].title;
 			this.config.date = events[0].startDateJ;
@@ -102,6 +108,12 @@ Module.register("MMM-NextEvent",{
 		} else if (this.config.date === "1000-10-10") {
 			timeWrapper.innerHTML = "In progress";
 			timeWrapper.className = "time bright xlarge light";
+		} else if (this.config.date === "1000-10-11") {
+			timeWrapper.innerHTML = "In progress";
+			timeWrapper.className = "time xlarge light yellow";
+		} else if (this.config.date === "1000-10-12") {
+			timeWrapper.innerHTML = "In progress";
+			timeWrapper.className = "time xlarge light red";
 		} else if (this.config.date !== "3000-01-01") {
 			timeWrapper.innerHTML = days + hrs + mins + secs;
 		}
